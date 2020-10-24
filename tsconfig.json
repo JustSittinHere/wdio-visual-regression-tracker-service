@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "module": "commonjs",
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "types": ["node", "@wdio/sync"],
+        "skipLibCheck": true
+    },
+    "include": ["src", "types"]
+}

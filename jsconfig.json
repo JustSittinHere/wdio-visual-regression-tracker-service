@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+      "checkJs": true
+    },
+    "include": [
+      "**/*.js",
+      "**/*.json",
+      "test/e2e/node_modules/expect-webdriverio",
+      "node_modules/@wdio/sync",
+      "node_modules/wdio-visual-regression-tracker-service"
+    ],
+    // "exclude": ["node_modules", "**/node_modules/*"]
+  }
