@@ -1,0 +1,27 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "wdio"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jasmine": "^3.5.14",
+    "@wdio/cli": "^6.6.0",
+    "@wdio/jasmine-framework": "^6.6.0",
+    "dotenv": "^8.2.0",
+    "expect-webdriverio": "^1.4.1"
+  },
+  "devDependencies": {
+    "@wdio/local-runner": "^6.6.0",
+    "@wdio/spec-reporter": "^6.6.0",
+    "@wdio/sync": "^6.6.0",
+    "chromedriver": "^86.0.0",
+    "nock": "^13.0.4",
+    "wdio-chromedriver-service": "^6.0.4"
+  }
+}
