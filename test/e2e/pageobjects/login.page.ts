@@ -29,4 +29,4 @@ class LoginPage extends Page {
     }
 }
 
-module.exports = new LoginPage();
+export default new LoginPage();

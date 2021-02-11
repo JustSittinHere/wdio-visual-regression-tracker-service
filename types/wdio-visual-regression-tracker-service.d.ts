@@ -1,6 +1,6 @@
 declare namespace WebdriverIO {
     interface Browser {
-        vrtSnapshotPage: (
+        vrtTrackPage: (
             name: string,
             options?: {
                 diffTolerancePercent?: number;
@@ -10,7 +10,10 @@ declare namespace WebdriverIO {
                 device?: string;
             },
         ) => import('@visual-regression-tracker/sdk-js/dist/testRunResult').default;
-        vrtSnapshotElement: (
+        vrtInstance: () => import('@visual-regression-tracker/sdk-js').VisualRegressionTracker;
+    }
+    interface Element {
+        vrtTrackElement: (
             name: string,
             options?: {
                 diffTolerancePercent?: number;
