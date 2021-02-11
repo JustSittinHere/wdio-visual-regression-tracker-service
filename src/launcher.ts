@@ -2,7 +2,7 @@ import { VisualRegressionTracker, Config, TestStatus, BuildResponse } from '@vis
 import VrtOptions from './VrtOptions';
 
 export default class WDIOSericeLauncher {
-    private options;
+    private options: VrtOptions;
     private caps;
     private config;
     private vrtCiName: string;
@@ -12,7 +12,7 @@ export default class WDIOSericeLauncher {
         this.options = serviceOptions;
         this.caps = caps;
         this.config = config;
-        this.vrtCiName = `Group ${Date.now().toString()}`;
+        this.vrtCiName = this.options.ciBuildId || `TestRun ${Date.now().toString()}`;
     }
 
     async onPrepare(_config, _capabilities) {
@@ -25,7 +25,8 @@ export default class WDIOSericeLauncher {
     }
 
     onWorkerStart(_cid, _caps, specs: string[], args: any, _execArgv) {
-        // pass the ciBuildId into all worker threads to group the test runs together
+        // pass the user specified or auto generated ciBuildId 
+        // into all worker threads to group the test runs together
         args.vrtCiName = this.vrtCiName;
     }
 
