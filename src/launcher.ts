@@ -3,29 +3,25 @@ import VrtOptions from './VrtOptions';
 
 export default class WDIOSericeLauncher {
     private options: VrtOptions;
-    private caps;
-    private config;
     private vrtCiName: string;
     private vrt: VisualRegressionTracker;
 
-    constructor(serviceOptions: VrtOptions, caps: any[], config: any) {
+    constructor(serviceOptions: VrtOptions) {
         this.options = serviceOptions;
-        this.caps = caps;
-        this.config = config;
         this.vrtCiName = this.options.ciBuildId || `TestRun ${Date.now().toString()}`;
     }
 
-    async onPrepare(_config, _capabilities) {
+    async onPrepare() {
         // create the run here with the ciBuildId to prevent race condition
         // in the worker thread attempting to create multiple runs with the same
         // name and getting a unique key violation
-        
-        this.vrt = new VisualRegressionTracker({...this.options, ciBuildId: this.vrtCiName});
+
+        this.vrt = new VisualRegressionTracker({ ...this.options, ciBuildId: this.vrtCiName });
         return this.vrt.start();
     }
 
-    onWorkerStart(_cid, _caps, specs: string[], args: any, _execArgv) {
-        // pass the user specified or auto generated ciBuildId 
+    onWorkerStart(_cid, _caps, _specs: string[], args: any) {
+        // pass the user specified or auto generated ciBuildId
         // into all worker threads to group the test runs together
         args.vrtCiName = this.vrtCiName;
     }

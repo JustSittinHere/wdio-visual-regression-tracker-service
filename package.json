@@ -7,7 +7,7 @@
   "scripts": {
     "test": "cd test/e2e && yarn test",
     "setup": "yarn link && cd test/e2e && yarn && yarn link \"wdio-visual-regression-tracker-service\"",
-    "lint": "eslint `src/**/*.ts`",
+    "lint": "eslint src/**/*.ts",
     "updates": "ncu",
     "build": "rm -Rf dist && tsc",
     "test:build": "tsc --noEmit",

@@ -9,12 +9,14 @@ export interface VrtTrackOptions {
     browser?: string;
     viewport?: string;
     device?: string;
-    ignoreAreas?: [{
-        x: number;
-        y: number;
-        width: number;
-        height: number;
-    }];
+    ignoreAreas?: [
+        {
+            x: number;
+            y: number;
+            width: number;
+            height: number;
+        },
+    ];
 }
 
 export default class WDIOServiceService {
@@ -29,7 +31,7 @@ export default class WDIOServiceService {
     private browser: WebdriverIO.Browser;
     private vrtCiName: string;
 
-    constructor(serviceOptions: VrtOptions, _caps, config: Partial<{vrtCiName: string}>) {
+    constructor(serviceOptions: VrtOptions, _caps, config: Partial<{ vrtCiName: string }>) {
         this.options = serviceOptions;
         this.log = logger('visual-regression-tracker-service');
         this.log.info('Visual Regression Tracker Service Added');
@@ -40,17 +42,14 @@ export default class WDIOServiceService {
     async before(_caps: unknown, _specs: string[], browser: WebdriverIO.Browser): Promise<BuildResponse> {
         this.browser = browser;
         this.log.debug('Connecting to Visual Regression Tracker');
-        
-        this.vrt = new VisualRegressionTracker({...this.options, ciBuildId: this.vrtCiName});
+
+        this.vrt = new VisualRegressionTracker({ ...this.options, ciBuildId: this.vrtCiName });
 
         this.log.debug('Adding vrtSnapshotPage command to browser');
 
         this.browser.addCommand(
             'vrtTrackPage',
-            async (
-                name: string,
-                options?: VrtTrackOptions
-            ): Promise<TestRunResult> => {
+            async (name: string, options?: VrtTrackOptions): Promise<TestRunResult> => {
                 const imageBase64 = await browser.takeScreenshot();
 
                 this.log.debug(`Uploading snapshot for test ${name}`);
@@ -83,7 +82,7 @@ export default class WDIOServiceService {
 
         this.browser.addCommand(
             'vrtTrackElement',
-            async function(name: string, options?: VrtTrackOptions): Promise<TestRunResult> {
+            async function (name: string, options?: VrtTrackOptions): Promise<TestRunResult> {
                 const vrt = (browser as any).vrtInstance();
                 if (!this.isExisting()) {
                     throw new Error(`Unable to find element ${this} for snapshot test ${name}`);
@@ -101,10 +100,10 @@ export default class WDIOServiceService {
                     device: options?.device,
                     ignoreAreas: options?.ignoreAreas,
                 });
-        
+
                 return result;
             },
-            true
+            true,
         );
 
         this.browser.addCommand(
