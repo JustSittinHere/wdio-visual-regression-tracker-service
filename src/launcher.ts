@@ -1,4 +1,4 @@
-import { VisualRegressionTracker, Config, TestStatus, BuildResponse } from '@visual-regression-tracker/sdk-js';
+import { VisualRegressionTracker } from '@visual-regression-tracker/sdk-js';
 import VrtOptions from './VrtOptions';
 
 export default class WDIOSericeLauncher {
