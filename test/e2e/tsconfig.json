@@ -2,12 +2,13 @@
     "compilerOptions": {
         "outDir": "dist",
         "module": "commonjs",
+        "target": "es6",
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": true,
         "noImplicitAny": false,
-        "types": ["node", "webdriverio/sync", "@wdio/types"],
+        "types": ["node", "webdriverio/sync", "@wdio/types", "wdio-visual-regression-tracker-service", "@wdio/jasmine-framework"],
         "skipLibCheck": true
     },
-    "include": ["src", "types"]
+    "include": ["specs"]
 }
