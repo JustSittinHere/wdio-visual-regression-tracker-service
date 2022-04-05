@@ -1,7 +1,7 @@
 import { VisualRegressionTracker } from '@visual-regression-tracker/sdk-js';
 import VrtOptions from './VrtOptions';
 
-export default class WDIOSericeLauncher {
+export default class WDIOServiceLauncher {
     private options: VrtOptions;
     private vrtCiName: string;
     private vrt: VisualRegressionTracker;

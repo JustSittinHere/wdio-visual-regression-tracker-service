@@ -7,7 +7,7 @@
         "preserveConstEnums": true,
         "sourceMap": true,
         "noImplicitAny": false,
-        "types": ["node", "webdriverio/sync", "@wdio/types", "wdio-visual-regression-tracker-service", "@wdio/jasmine-framework"],
+        "types": ["node", "webdriverio/async", "@wdio/types", "wdio-visual-regression-tracker-service", "@wdio/jasmine-framework"],
         "skipLibCheck": true
     },
     "include": ["specs"]

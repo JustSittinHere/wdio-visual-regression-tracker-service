@@ -83,7 +83,7 @@ export default class WDIOServiceService {
         this.browser.addCommand(
             'vrtTrackElement',
             async function (name: string, options?: VrtTrackOptions): Promise<TestRunResult> {
-                const vrt = (browser as any).vrtInstance();
+                const vrt = await (browser as any).vrtInstance();
                 if (!this.isExisting()) {
                     throw new Error(`Unable to find element ${this} for snapshot test ${name}`);
                 }
@@ -106,12 +106,9 @@ export default class WDIOServiceService {
             true,
         );
 
-        this.browser.addCommand(
-            'vrtInstance',
-            (): VisualRegressionTracker => {
-                return this.vrt;
-            },
-        );
+        this.browser.addCommand('vrtInstance', (): VisualRegressionTracker => {
+            return this.vrt;
+        });
 
         this.log.info('Starting Visual Regression Tracker');
         return this.vrt.start();

@@ -5,13 +5,15 @@
   "main": "dist/index.js",
   "types": "./types/wdio-visual-regression-tracker-service.d.ts",
   "scripts": {
-    "test": "cd test/e2e && yarn test",
-    "setup": "yarn link && cd test/e2e && yarn && yarn link \"wdio-visual-regression-tracker-service\"",
+    "test": "cd test && yarn test",
+    "setup": "yarn && yarn link && cd test && yarn && yarn link \"wdio-visual-regression-tracker-service\"",
     "lint": "eslint src/**/*.ts",
     "updates": "ncu",
     "build": "rm -Rf dist && tsc",
     "test:build": "tsc --noEmit",
-    "start": "cd test/vrt-docker && docker-compose up"
+    "install:vrt": "curl https://raw.githubusercontent.com/Visual-Regression-Tracker/Visual-Regression-Tracker/master/vrt-install.sh -o vrt-install.sh && chmod a+x vrt-install.sh && ./vrt-install.sh",
+    "start:vrt": "docker-compose up",
+    "stop:vrt": "docker-compose down"
   },
   "keywords": [
     "wdio",
@@ -21,21 +23,24 @@
   "author": "JustSittinHere",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "4.15.0",
-    "@typescript-eslint/parser": "4.15.0",
-    "@wdio/sync": "^7.0.1",
-    "@wdio/types": "^7.0.0",
-    "eslint": "7.19.0",
-    "eslint-config-prettier": "7.2.0",
-    "eslint-plugin-prettier": "3.3.1",
-    "nock": "^13.0.7",
-    "npm-check-updates": "^11.1.1",
-    "prettier": "2.2.1",
-    "typescript": "4.1.5"
+    "@typescript-eslint/eslint-plugin": "5.17.0",
+    "@typescript-eslint/parser": "5.17.0",
+    "eslint": "8.12.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "nock": "13.2.4",
+    "npm-check-updates": "12.5.4",
+    "prettier": "2.6.1",
+    "typescript": "4.6.3",
+    "webdriverio": "7.19.3",
+    "@wdio/types": "7.19.1",
+    "@wdio/logger": "7.19.0"
   },
   "dependencies": {
-    "@visual-regression-tracker/sdk-js": "4.6.3",
-    "@wdio/logger": "7.0.0",
-    "webdriver": "7.0.0"
+    "@visual-regression-tracker/sdk-js": "5.3.0"
+  },
+  "peerDependencies": {
+    "webdriver": "~7",
+    "@wdio/logger": "~7"
   }
 }
