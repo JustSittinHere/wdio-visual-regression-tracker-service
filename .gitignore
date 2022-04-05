@@ -3,3 +3,8 @@ node_modules
 *.log
 .env
 vrt-docker/
+imageUploads/
+db/
+record.txt
+docker-compose.yml
+vrt-install.sh

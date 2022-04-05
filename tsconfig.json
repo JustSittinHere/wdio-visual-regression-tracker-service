@@ -6,7 +6,7 @@
         "preserveConstEnums": true,
         "sourceMap": true,
         "noImplicitAny": false,
-        "types": ["node", "webdriverio/sync", "@wdio/types"],
+        "types": ["node", "@wdio/types", "webdriverio/async"],
         "skipLibCheck": true
     },
     "include": ["src", "types"]
