@@ -1,10 +1,12 @@
-name: Build PR
+name: Build And Test
 on:
   pull_request:
     branches: [ master ]
+  push:
+    branches: [ master ]
 jobs:
-  test:
-    timeout-minutes: 5
+  Build and Test:
+    timeout-minutes: 2
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
