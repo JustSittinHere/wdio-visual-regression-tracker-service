@@ -5,7 +5,7 @@ on:
   push:
     branches: [ master ]
 jobs:
-  Build and Test:
+  BuildAndTest:
     timeout-minutes: 2
     runs-on: ubuntu-latest
     steps:
