@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require('fs');
 const baseConfig = require('./baseConfig').config;
 const nock = require('nock');
@@ -10,8 +11,5 @@ nock.recorder.rec({
 
 exports.config = {
     ...baseConfig,
-    services: [
-        ...baseConfig.services,
-        'chromedriver',
-    ],
+    services: [...baseConfig.services, 'chromedriver'],
 };

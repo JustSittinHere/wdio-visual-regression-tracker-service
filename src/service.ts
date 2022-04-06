@@ -54,7 +54,9 @@ export default class WDIOServiceService {
         };
 
         if (!(await isHtml2CanvasRegistered())) {
-            const html2canvasjs = fs.readFileSync(require.resolve('html2canvas')).toString();
+            const html2canvasjs = fs
+                .readFileSync(require.resolve('html2canvas').replace('html2canvas.js', 'html2canvas.min.js'))
+                .toString();
             await browser.execute(html2canvasjs);
         }
 
