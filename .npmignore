@@ -1,5 +1,9 @@
+.github/
+db/
+imageUploads/
 node_modules/
 test/
+.eslintignore
 .eslintrc.js
 .prettierrc.js
 jsconfig.json
