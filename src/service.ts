@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import logger from '@wdio/logger';
 import { VisualRegressionTracker, Config, TestStatus, BuildResponse } from '@visual-regression-tracker/sdk-js';
 import TestRunResult from '@visual-regression-tracker/sdk-js/dist/testRunResult';
@@ -17,6 +18,7 @@ export interface VrtTrackOptions {
             height: number;
         },
     ];
+    captureFullPage?: boolean;
 }
 
 export default class WDIOServiceService {
@@ -39,6 +41,50 @@ export default class WDIOServiceService {
         this.vrtCiName = config.vrtCiName;
     }
 
+    async takeScreenshotFullPage(): Promise<string> {
+        // Full credits go to https://www.automatetheplanet.com/full-page-screenshots-webdriver-html2canvas/
+        // for this implementation
+        const isHtml2CanvasRegistered = async (): Promise<boolean> => {
+            try {
+                const result: boolean = await browser.execute('return typeof html2canvas !== "undefined"');
+                return result;
+            } catch {
+                return false;
+            }
+        };
+
+        if (!(await isHtml2CanvasRegistered())) {
+            const html2canvasjs = fs.readFileSync(require.resolve('html2canvas')).toString();
+            await browser.execute(html2canvasjs);
+        }
+
+        await browser.execute(`
+              function genScreenshot() {
+                  let canvasImgContentDecoded;
+                  html2canvas(document.body).then(function (canvas) {
+                      window.canvasImgContentDecoded = canvas.toDataURL('image/png');
+                  });
+              }
+    
+              genScreenshot();
+          `);
+
+        await browser.waitUntil(async () => {
+            try {
+                const result: boolean = await browser.execute('return typeof canvasImgContentDecoded !== "undefined"');
+                return result;
+            } catch {
+                return false;
+            }
+        });
+
+        const image: string = await browser.execute('return canvasImgContentDecoded');
+
+        const validImageBase64 = image.replace('data:image/png;base64,', '');
+
+        return validImageBase64;
+    }
+
     async before(_caps: unknown, _specs: string[], browser: WebdriverIO.Browser): Promise<BuildResponse> {
         this.browser = browser;
         this.log.debug('Connecting to Visual Regression Tracker');
@@ -50,7 +96,9 @@ export default class WDIOServiceService {
         this.browser.addCommand(
             'vrtTrackPage',
             async (name: string, options?: VrtTrackOptions): Promise<TestRunResult> => {
-                const imageBase64 = await browser.takeScreenshot();
+                const imageBase64 = options?.captureFullPage
+                    ? await this.takeScreenshotFullPage()
+                    : await browser.takeScreenshot();
 
                 this.log.debug(`Uploading snapshot for test ${name}`);
 
@@ -62,6 +110,7 @@ export default class WDIOServiceService {
                     browser: options?.browser,
                     viewport: options?.viewport,
                     device: options?.device,
+                    ignoreAreas: options?.ignoreAreas,
                 });
 
                 if (result.testRunResponse.status === TestStatus.unresolved) {
