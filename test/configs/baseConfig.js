@@ -3,11 +3,10 @@ exports.config = {
     exclude: [
         // 'path/to/excluded/files'
     ],
-    maxInstances: 2,
+    maxInstances: 5,
     capabilities: [
         {
-            maxInstances: 2,
-            //
+            maxInstances: 5,
             browserName: 'chrome',
             acceptInsecureCerts: true,
             'goog:chromeOptions': {
@@ -15,10 +14,10 @@ exports.config = {
             },
         },
     ],
-    logLevel: 'info',
+    logLevel: 'warn',
     bail: 0,
-    baseUrl: 'http://localhost',
-    waitforTimeout: 10000,
+    baseUrl: 'https://the-internet.herokuapp.com',
+    waitForTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,
     services: [
@@ -37,10 +36,7 @@ exports.config = {
     ],
     framework: 'jasmine',
     reporters: ['spec'],
-    jasmineNodeOpts: {
+    jasmineOpts: {
         defaultTimeoutInterval: 60000,
-        expectationResultHandler: function (passed, assertion) {
-            // do something
-        },
     },
 };

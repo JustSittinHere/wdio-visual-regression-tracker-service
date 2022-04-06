@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 
 const baseConfig = require('./baseConfig').config;
@@ -18,7 +20,7 @@ exports.config = {
     protocol: 'http',
     hostname: 'localhost',
     port: 9515,
-    beforeSession: function (config, capabilities, specs) {
+    beforeSession: () => {
         loadMocks();
     },
 };

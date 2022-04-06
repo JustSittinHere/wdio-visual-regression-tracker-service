@@ -1,6 +1,6 @@
 declare namespace WebdriverIO {
     interface Browser {
-        async vrtTrackPage: (
+        vrtTrackPage: (
             name: string,
             options?: {
                 diffTolerancePercent?: number;
@@ -8,12 +8,21 @@ declare namespace WebdriverIO {
                 browser?: string;
                 viewport?: string;
                 device?: string;
+                ignoreAreas?: [
+                    {
+                        x: number;
+                        y: number;
+                        width: number;
+                        height: number;
+                    },
+                ];
+                captureFullPage?: boolean;
             },
         ) => Promise<import('@visual-regression-tracker/sdk-js/dist/testRunResult').default>;
         vrtInstance: () => import('@visual-regression-tracker/sdk-js').VisualRegressionTracker;
     }
     interface Element {
-        async vrtTrackElement: (
+        vrtTrackElement: (
             name: string,
             options?: {
                 diffTolerancePercent?: number;
@@ -21,8 +30,16 @@ declare namespace WebdriverIO {
                 browser?: string;
                 viewport?: string;
                 device?: string;
+                ignoreAreas?: [
+                    {
+                        x: number;
+                        y: number;
+                        width: number;
+                        height: number;
+                    },
+                ];
             },
         ) => Promise<import('@visual-regression-tracker/sdk-js/dist/testRunResult').default>;
-        async vrtInstance: () => Promise<import('@visual-regression-tracker/sdk-js').VisualRegressionTracker>;
+        vrtInstance: () => Promise<import('@visual-regression-tracker/sdk-js').VisualRegressionTracker>;
     }
 }
