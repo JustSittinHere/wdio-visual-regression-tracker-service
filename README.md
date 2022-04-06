@@ -12,6 +12,10 @@ This package is a plugin for [WebDriverIO](https://webdriver.io/) to allow for p
 * Shareable links to results online without the need to send a results file
 * Full baseline history so you can track application changes over time
 
+## Async vs Sync Mode
+
+As Sync mode in WebdriverIO has been deprecated, this package only supports Async mode.  It's possible this might work with existing Sync mode test suites, but I cannot guarantee this
+
 ## Installation
 
 ```bash
@@ -42,46 +46,62 @@ services: [
 
 The WDIO Browser object has been extended with new functions
 
-### vrtSnapshotPage
+### vrtTrackPage
 
 Takes a screenshot of the entire page using browser.takeScreenshot and uploads it to VRT for comparison.  Returns the VRT test Results Object
 
 ```js
-const result = browser.vrtSnapshotPage('Test Name', {
+const result = await browser.vrtTrackPage('Test Name', {
     diffTolerancePercent?: number;
     os?: string;
     browser?: string;
     viewport?: string;
-    device?: string;}
-);
+    device?: string;
+    ignoreAreas?: [{
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }];
+});
 ```
 
-### vrtSnapshotElement
+#### Full page screenshots including scrolling
 
-Takes a snapshot of a specific element using browser.takeElementScreenshot and uploads it to VRT for comparision.  Returns the VRT test results object.
+**This is an experimental feature**
+
+Currently, when taking a screenshot only FireFox will return you the entire page including scrolling.  This feature makes use of [HTML2Canvas](https://html2canvas.hertzen.com/) to capture the entire page, not just the visible area.  Taken from this [AutomateThePlanet Article](https://www.automatetheplanet.com/full-page-screenshots-webdriver-html2canvas/)
 
 ```js
-const result = browser.vrtSnapshotElement('Test Name', '<SELECTOR or ELEMENT>', {
+const result = await browser.vrtTrackPage('Test Name', { captureFullPage: true });
+```
+
+### vrtTrackElement
+
+Takes a snapshot of a specific element using browser.takeElementScreenshot and uploads it to VRT for comparison.  Returns the VRT test results object.
+
+```js
+const result = await (await $('.elementLocator')).vrtTrackElement('Test Name', {
     diffTolerancePercent?: number;
     os?: string;
     browser?: string;
     viewport?: string;
-    device?: string;}
+    device?: string;
+    ignoreAreas?: [{
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }]});
 );
 ```
-
-```js
-const resultBySelector = browser.vrtSnapshotElement('LoginButton', '#loginButton');
-const resultByElement = browser.vrtSnapshotElement('LoginButton', $('#loginButton'));
-```
-
 ### vrtInstance
 
 Returns the raw VRT instance created by the VRT SDK on start.  Refer to [sdk-js docs](https://github.com/Visual-Regression-Tracker/sdk-js) for more info
 
 ```js
-const vrt = browser.vrtInstance();
-const result = vrt.track('imageName', 'imageBase64');
+const vrt = await browser.vrtInstance();
+const result = await vrt.track('imageName', 'imageBase64');
 ```
 
 For more information on WebdriverIO see the [homepage](https://webdriver.io)
