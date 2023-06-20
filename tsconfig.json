@@ -4,9 +4,10 @@
         "module": "commonjs",
         "removeComments": true,
         "preserveConstEnums": true,
+        "esModuleInterop": true,
         "sourceMap": true,
         "noImplicitAny": false,
-        "types": ["node", "@wdio/types", "webdriverio/async"],
+        "types": ["node", "@wdio/globals/types"],
         "skipLibCheck": true
     },
     "include": ["src", "types"]

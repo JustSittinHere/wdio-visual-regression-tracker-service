@@ -8,3 +8,5 @@ db/
 record.txt
 docker-compose.yml
 vrt-install.sh
+.DS_Store
+.idea/

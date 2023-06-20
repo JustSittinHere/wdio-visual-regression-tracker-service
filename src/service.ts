@@ -41,7 +41,7 @@ export default class WDIOServiceService {
         this.vrtCiName = config.vrtCiName;
     }
 
-    async takeScreenshotFullPage(): Promise<string> {
+    async takeScreenshotFullPage(browser: WebdriverIO.Browser): Promise<string> {
         // Full credits go to https://www.automatetheplanet.com/full-page-screenshots-webdriver-html2canvas/
         // for this implementation
         const isHtml2CanvasRegistered = async (): Promise<boolean> => {
@@ -99,7 +99,7 @@ export default class WDIOServiceService {
             'vrtTrackPage',
             async (name: string, options?: VrtTrackOptions): Promise<TestRunResult> => {
                 const imageBase64 = options?.captureFullPage
-                    ? await this.takeScreenshotFullPage()
+                    ? await this.takeScreenshotFullPage(browser)
                     : await browser.takeScreenshot();
 
                 this.log.debug(`Uploading snapshot for test ${name}`);
