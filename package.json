@@ -4,6 +4,7 @@
   "description": "WDIO Service for the Visual Regression Tracker",
   "main": "dist/index.js",
   "types": "./types/wdio-visual-regression-tracker-service.d.ts",
+  "type": "module",
   "scripts": {
     "test": "cd test && yarn test",
     "setup": "yarn && yarn link && cd test && yarn && yarn link \"wdio-visual-regression-tracker-service\"",

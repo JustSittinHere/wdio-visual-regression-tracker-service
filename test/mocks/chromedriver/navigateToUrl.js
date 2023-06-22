@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const nock = require('nock');
+import nock from 'nock';
 
 nock('http://localhost:9515', { encodedQueryParams: true })
     .post((uri) => uri.endsWith('url'))

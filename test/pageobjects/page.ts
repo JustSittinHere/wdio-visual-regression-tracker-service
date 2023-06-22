@@ -1,4 +1,4 @@
-import { BrowsingContextNavigateResult } from 'webdriver/build/bidi/localTypes';
+import { BrowsingContextNavigateResult } from '../node_modules/webdriver/build/bidi/localTypes';
 
 /**
  * main page object containing all methods, selectors and functionality

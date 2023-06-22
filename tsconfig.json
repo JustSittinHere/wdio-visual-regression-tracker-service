@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "outDir": "dist",
-        "module": "commonjs",
         "removeComments": true,
         "preserveConstEnums": true,
         "esModuleInterop": true,

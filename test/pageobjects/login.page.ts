@@ -1,5 +1,5 @@
 import Page from './page';
-import { BrowsingContextNavigateResult } from 'webdriver/build/bidi/localTypes';
+import { BrowsingContextNavigateResult } from '../node_modules/webdriver/build/bidi/localTypes';
 
 /**
  * sub page containing specific selectors and methods for a specific page

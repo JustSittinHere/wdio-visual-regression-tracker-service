@@ -1,4 +1,4 @@
-exports.config = {
+const config = {
     specs: ['../specs/**/*.spec.ts'],
     exclude: [
         // 'path/to/excluded/files'
@@ -40,3 +40,5 @@ exports.config = {
         defaultTimeoutInterval: 60000,
     },
 };
+
+export default config;

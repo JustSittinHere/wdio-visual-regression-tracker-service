@@ -1,20 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require('path');
-
-const baseConfig = require('./baseConfig').config;
+import path from 'path';
+import baseConfig from './baseConfig.js';
+import { getAllFilesSync } from 'get-all-files';
+import { fileURLToPath } from 'url';
 
 const loadMocks = () => {
-    const nock = require('nock');
-    const getAllFiles = require('get-all-files');
-    for (const filename of getAllFiles.getAllFilesSync(path.join(__dirname, '..', 'mocks'))) {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
+    for (const filename of getAllFilesSync(path.join(__dirname, '..', 'mocks'))) {
         require(filename);
     }
 };
 
 loadMocks();
 
-exports.config = {
+const config = {
     ...baseConfig,
     runner: 'local',
     protocol: 'http',
@@ -24,3 +26,5 @@ exports.config = {
         loadMocks();
     },
 };
+
+export default config;
