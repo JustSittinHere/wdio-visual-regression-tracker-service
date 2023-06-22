@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-var-requires */
 import path from 'path';
-import baseConfig from './baseConfig.js';
+import { baseConfig } from './baseConfig';
 import { getAllFilesSync } from 'get-all-files';
 import { fileURLToPath } from 'url';
 
@@ -10,7 +8,7 @@ const loadMocks = () => {
     const __dirname = path.dirname(__filename);
 
     for (const filename of getAllFilesSync(path.join(__dirname, '..', 'mocks'))) {
-        require(filename);
+        import(filename);
     }
 };
 

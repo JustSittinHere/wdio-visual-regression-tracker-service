@@ -1,12 +1,16 @@
 {
     "compilerOptions": {
         "outDir": "dist",
-        "target": "es6",
+        "module": "es6",
+        "target": "es2015",
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": true,
         "noImplicitAny": false,
         "types": ["node", "@wdio/globals/types", "wdio-visual-regression-tracker-service", "@wdio/jasmine-framework"],
-        "skipLibCheck": true
-    }
+        "skipLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node"
+    },
+    "include": ["test/**/*.ts"]
 }

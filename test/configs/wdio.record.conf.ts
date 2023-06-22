@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import fs from 'fs';
+import * as fs from 'fs';
 import baseConfig from './baseConfig';
 import nock from 'nock';
 
@@ -14,4 +14,4 @@ const config = {
     services: [...baseConfig.services, 'chromedriver'],
 };
 
-export default exports;
+export default config;

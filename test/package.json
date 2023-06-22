@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "test": "wdio configs/wdio.integration.conf.js",
-    "test:e2e": "wdio configs/wdio.e2e.conf.js",
-    "record": "wdio configs/wdio.record.conf.js"
+    "test": "wdio configs/wdio.integration.conf.ts",
+    "test:e2e": "wdio configs/wdio.e2e.conf.ts",
+    "record": "wdio configs/wdio.record.conf.ts"
   },
   "keywords": [],
   "author": "",
