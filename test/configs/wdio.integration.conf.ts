@@ -1,5 +1,5 @@
 import path from 'path';
-import { baseConfig } from './baseConfig';
+import { baseConfig } from './baseConfig.ts';
 import { getAllFilesSync } from 'get-all-files';
 import { fileURLToPath } from 'url';
 
@@ -14,7 +14,7 @@ const loadMocks = () => {
 
 loadMocks();
 
-const config = {
+export const config: WebdriverIO.Config = {
     ...baseConfig,
     runner: 'local',
     protocol: 'http',
@@ -24,5 +24,3 @@ const config = {
         loadMocks();
     },
 };
-
-export default config;

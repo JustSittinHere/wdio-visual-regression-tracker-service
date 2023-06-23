@@ -1,5 +1,5 @@
-import Launcher from './launcher';
-import Service from './service';
+import WDIOServiceLauncher from './launcher.js';
+import WDIOServiceService from './service.js';
 
-export default Service;
-export const launcher = Launcher;
+export default WDIOServiceService;
+export const launcher = WDIOServiceLauncher;

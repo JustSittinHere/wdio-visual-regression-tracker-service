@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "outDir": "dist",
-        "module": "es6",
-        "target": "es2015",
+        "module": "esnext",
+        "target": "esnext",
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": true,
@@ -12,5 +12,5 @@
         "allowSyntheticDefaultImports": true,
         "moduleResolution": "node"
     },
-    "include": ["test/**/*.ts"]
+    "include": ["**/*.ts"]
 }
