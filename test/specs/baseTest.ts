@@ -1,4 +1,4 @@
-import LoginPage from '../pageobjects/login.page.js';
+import LoginPage from '../pageobjects/login.page';
 
 export default function () {
     beforeAll(() => {

@@ -1,4 +1,4 @@
-import Page from './page.js';
+import Page from './page';
 import { BrowsingContextNavigateResult } from '../node_modules/webdriver/build/bidi/localTypes';
 
 /**
