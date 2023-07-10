@@ -1,5 +1,5 @@
 import path from 'path';
-import { baseConfig } from './baseConfig.ts';
+import { baseConfig } from './baseConfig.js';
 import { getAllFilesSync } from 'get-all-files';
 import { fileURLToPath } from 'url';
 
