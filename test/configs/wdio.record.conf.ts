@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import * as fs from 'fs';
-import baseConfig from './baseConfig';
+import { baseConfig } from './baseConfig.js';
 import nock from 'nock';
 
 const appendLogToFile = (content) => fs.appendFileSync('record.txt', content);
