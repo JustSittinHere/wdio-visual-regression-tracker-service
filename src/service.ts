@@ -1,8 +1,14 @@
 import * as fs from 'fs';
+import { createRequire } from 'node:module';
 import logger from '@wdio/logger';
 import { VisualRegressionTracker, Config, TestStatus, BuildResponse } from '@visual-regression-tracker/sdk-js';
 import TestRunResult from '@visual-regression-tracker/sdk-js/dist/testRunResult';
 import VrtOptions from './VrtOptions';
+
+/*
+ * allows for use of require inside of an esModule context
+ */
+const require = createRequire(import.meta.url);
 
 export interface VrtTrackOptions {
     diffTolerancePercent?: number;
