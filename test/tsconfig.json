@@ -9,7 +9,8 @@
         "noImplicitAny": false,
         "types": ["node", "@wdio/globals/types", "wdio-visual-regression-tracker-service", "@wdio/jasmine-framework"],
         "skipLibCheck": true,
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
     },
     "include": ["**/*.ts"]
 }
