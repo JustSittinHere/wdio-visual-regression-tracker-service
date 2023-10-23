@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const nock = require('nock');
+import nock from 'nock';
 
 nock('http://localhost:9515', { encodedQueryParams: true })
     .post('/session/cf1c85604d8b37389d0d482e8e0dff21/element', {

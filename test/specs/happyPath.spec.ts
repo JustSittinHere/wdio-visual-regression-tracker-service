@@ -1,3 +1,3 @@
-import baseTest from './baseTest';
+import baseTest from './baseTest.js';
 
 describe('VRT Happy Path', () => baseTest());

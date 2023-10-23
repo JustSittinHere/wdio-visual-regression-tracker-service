@@ -1,14 +1,16 @@
 {
     "compilerOptions": {
         "outDir": "dist",
-        "module": "commonjs",
-        "target": "es6",
+        "module": "esnext",
+        "target": "esnext",
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": true,
         "noImplicitAny": false,
-        "types": ["node", "webdriverio/async", "@wdio/types", "wdio-visual-regression-tracker-service", "@wdio/jasmine-framework"],
-        "skipLibCheck": true
+        "types": ["node", "@wdio/globals/types", "wdio-visual-regression-tracker-service", "@wdio/jasmine-framework"],
+        "skipLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
     },
-    "include": ["specs"]
+    "include": ["**/*.ts"]
 }

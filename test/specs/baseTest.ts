@@ -1,4 +1,4 @@
-import LoginPage from '../pageobjects/login.page';
+import LoginPage from '../pageobjects/login.page.js';
 
 export default function () {
     beforeAll(() => {
@@ -11,9 +11,9 @@ export default function () {
     });
 
     it('should take element screenshot', async () => {
-        const result = await (
-            await LoginPage.btnSubmit
-        ).vrtTrackElement('LoginPage_SubmitButton', { diffTolerancePercent: 50 });
+        const element = await LoginPage.btnSubmit()
+        const result = await element.vrtTrackElement('LoginPage_SubmitButton', { diffTolerancePercent: 50 });
+        
         expect(result.testRunResponse.status).toBe('ok');
     });
 }

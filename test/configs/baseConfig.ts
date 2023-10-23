@@ -1,5 +1,5 @@
-exports.config = {
-    specs: ['./specs/**/*.spec.ts'],
+export const baseConfig = {
+    specs: ['../specs/**/*.spec.ts'],
     exclude: [
         // 'path/to/excluded/files'
     ],

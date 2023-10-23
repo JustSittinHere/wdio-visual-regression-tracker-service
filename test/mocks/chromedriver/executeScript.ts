@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const nock = require('nock');
+import nock from 'nock';
 
 const execSyncUriMatcher = (uri) => uri.endsWith('/execute/sync');
 

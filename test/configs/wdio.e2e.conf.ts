@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const baseConfig = require('./baseConfig').config;
+import { baseConfig } from './baseConfig.js';
 
-exports.config = {
+export const config = {
     ...baseConfig,
     services: [...baseConfig.services, 'chromedriver'],
 };

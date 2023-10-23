@@ -1,3 +1,9 @@
+declare global {
+    export interface Global {
+        browser: WebdriverIO.BrowserObject;
+    }
+}
+
 declare namespace WebdriverIO {
     interface Browser {
         vrtTrackPage: (

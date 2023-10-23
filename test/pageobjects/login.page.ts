@@ -1,4 +1,5 @@
-import Page from './page';
+import Page from './page.js';
+import { BrowsingContextNavigateResult } from '../node_modules/webdriver/build/bidi/localTypes.js';
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -7,13 +8,13 @@ class LoginPage extends Page {
     /**
      * define selectors using getter methods
      */
-    get inputUsername() {
+    inputUsername() {
         return $('#username');
     }
-    get inputPassword() {
+    inputPassword() {
         return $('#password');
     }
-    get btnSubmit() {
+    btnSubmit() {
         return $('button[type="submit"]');
     }
 
@@ -22,15 +23,15 @@ class LoginPage extends Page {
      * e.g. to login using username and password
      */
     async login(username, password): Promise<void> {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
+        await this.inputUsername().setValue(username);
+        await this.inputPassword().setValue(password);
+        await this.btnSubmit().click();
     }
 
     /**
      * overwrite specific options to adapt it to page object
      */
-    async open(): Promise<string> {
+    async open(): Promise<string | BrowsingContextNavigateResult> {
         return super.open('login');
     }
 }

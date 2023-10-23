@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const nock = require('nock');
+import nock from 'nock';
 
 nock('http://localhost:4200', { encodedQueryParams: true })
     .patch('/builds/602398fe-61fc-4786-8131-16d62c5f5eca', {})

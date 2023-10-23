@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const nock = require('nock');
+import nock from 'nock';
 
 nock('http://localhost:4200', { encodedQueryParams: true })
     .post('/builds', { branchName: 'master', project: 'Default project', ciBuildId: 'TestRun 1' })

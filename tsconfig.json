@@ -1,13 +1,16 @@
 {
     "compilerOptions": {
         "outDir": "dist",
-        "module": "commonjs",
+        "module": "esnext",
+        "target": "es5",
         "removeComments": true,
         "preserveConstEnums": true,
+        "esModuleInterop": true,
         "sourceMap": true,
         "noImplicitAny": false,
-        "types": ["node", "@wdio/types", "webdriverio/async"],
-        "skipLibCheck": true
+        "types": ["node", "@wdio/globals/types"],
+        "skipLibCheck": true,
+        "moduleResolution": "node"
     },
-    "include": ["src", "types"]
+    "include": ["src/**/*.ts", "types/**/*.ts"]
 }

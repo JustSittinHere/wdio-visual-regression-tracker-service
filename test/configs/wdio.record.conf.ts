@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const fs = require('fs');
-const baseConfig = require('./baseConfig').config;
-const nock = require('nock');
+import * as fs from 'fs';
+import { baseConfig } from './baseConfig.js';
+import nock from 'nock';
 
 const appendLogToFile = (content) => fs.appendFileSync('record.txt', content);
 
@@ -9,7 +9,9 @@ nock.recorder.rec({
     logging: appendLogToFile,
 });
 
-exports.config = {
+const config = {
     ...baseConfig,
     services: [...baseConfig.services, 'chromedriver'],
 };
+
+export default config;
